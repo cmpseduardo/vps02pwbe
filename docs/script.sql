@@ -1,0 +1,48 @@
+DROP DATABASE IF EXISTS senai;
+CREATE DATABASE senai CHARSET=UTF8 COLLATE UTF8_GENERAL_CI;
+
+USE senai;
+
+CREATE TABLE cursos(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    curso VARCHAR(50) NOT NULL,
+    duracao VARCHAR(30) NOT NULL
+);
+
+
+CREATE TABLE alunos(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    nascimento VARCHAR(11)
+);
+
+CREATE TABLE cursados(
+    id INTEGER NOT NULL,
+    curso VARCHAR(50) NOT NULL,
+    data_cursado VARCHAR(11) NOT NULL,
+    FOREIGN KEY (id) REFERENCES alunos(id)
+);
+
+DESCRIBE cursos;
+DESCRIBE alunos;
+DESCRIBE cursados;
+SHOW TABLES;
+
+LOAD DATA INFILE 'C:/Users/Desenvolvimento/Desktop/30-11-2022/docs/cursos.csv'
+INTO TABLE cursos
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/Desenvolvimento/Desktop/30-11-2022/docs/alunos.csv'
+INTO TABLE alunos
+FIELDS TERMINATED BY ';'
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+LOAD DATA INFILE 'C:/Users/Desenvolvimento/Desktop/30-11-2022/docs/cursados.csv'
+INTO TABLE cursados
+FIELDS TERMINATED BY ';'
+IGNORE 1 ROWS;
